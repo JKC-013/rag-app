@@ -70,7 +70,7 @@ async def rag_query_pdf_ai(ctx: inngest.Context):
 
     adapter = ai.openai.Adapter(
         auth_key=os.getenv("GEMINI_API_KEY"),
-        model="gemini-2.5-flash",
+        model="gemini-2.5-flash-lite",
         base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
     )
 

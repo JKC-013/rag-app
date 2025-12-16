@@ -4,9 +4,11 @@ from llama_index.readers.file import PDFReader
 from llama_index.core.node_parser import SentenceSplitter
 from dotenv import load_dotenv
 
+import os
+
 load_dotenv()
 
-client = genai.Client()
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 EMBED_MODEL = "gemini-embedding-001"
 EMBED_DIM = 3072
 

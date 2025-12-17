@@ -33,8 +33,7 @@ def ingest_pdf(pdf_path: str, source_id: str = None) -> int:
     vecs = embed_texts(chunks)
     
     # 3. Prepare for Qdrant
-    # Generate stable integer IDs to avoid hash() randomization in QdrantStorage.upsert
-    ids = [uuid.uuid5(uuid.NAMESPACE_URL, f"{source_id}:{i}").int & 0x7fffffff for i in range(len(chunks))]
+    ids = [str(uuid.uuid5(uuid.NAMESPACE_URL, f"{source_id}:{i}")) for i in range(len(chunks))]
     payloads = [{"source": source_id, "text": chunks[i]} for i in range(len(chunks))]
     
     # 4. Upsert

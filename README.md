@@ -17,9 +17,9 @@ uv run streamlit run .\streamlit_local_app.py
 ### Setup a Streamlit Cloud app
 Copy your .env file to the toml in Advanced Settings
 ```
-GEMINI_API_KEY="AIzaSyAXgHTIloP_ZeyhltRbeIDAKK-66KRVSQ8"
-QDRANT_URL="https://1430fa95-5e8c-4aad-a7c8-a4dbbe540eb6.us-east-1-1.aws.cloud.qdrant.io"
-QDRANT_API_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.LcuqPp38mc6-UjJtFLiSImlMS2I0hn9M8yJ-CdYO_jE"
+GEMINI_API_KEY="PLACEHOLDER"
+QDRANT_URL="PLACEHOLDER"
+QDRANT_API_KEY="PLACEHOLDER"
 ```
 
 Then select the master branch and the streamlit_cloud_app.py file to initialize the app.

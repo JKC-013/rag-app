@@ -68,7 +68,7 @@ def query_pdf(question: str, top_k: int = 5) -> dict:
     # 4. Call LLM
     client = get_llm_client()
     response = client.chat.completions.create(
-        model="gemini-2.0-flash-lite", # Updated to a widely available model alias if 2.5 is not std, or keep 2.5 if user had it. User code had 2.5-flash.
+        model="gemini-2.5-flash-lite", # Updated to a widely available model alias if 2.5 is not std, or keep 2.5 if user had it. User code had 2.5-flash.
         messages=[
             {"role": "system", "content": "You answer questions using only the provided context."},
             {"role": "user", "content": user_content}

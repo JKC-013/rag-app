@@ -91,10 +91,31 @@ async def rag_query_pdf_ai(ctx: inngest.Context):
     answer = res["choices"][0]["message"]["content"].strip()
     return {"answer": answer, "sources": found.sources, "num_contexts": len(found.contexts)}
 
+@inngest_client.create_function(
+    fn_id="Log: Ingest Completed",
+    trigger=inngest.TriggerEvent(event="rag/ingest_completed"),
+)
+async def log_ingest_completed(ctx: inngest.Context):
+    data = ctx.event.data
+    ctx.logger.info(f"✅ Dashboard Log: Ingested {data.get('pdf_path')} ({data.get('num_chunks')} chunks)")
+
+@inngest_client.create_function(
+    fn_id="Log: Query Completed",
+    trigger=inngest.TriggerEvent(event="rag/query_completed"),
+)
+async def log_query_completed(ctx: inngest.Context):
+    data = ctx.event.data
+    ctx.logger.info(f"🔍 Dashboard Log: Query '{data.get('question')}' - Answered")
+
 app = FastAPI()
 
 @app.get("/")
 def read_root():
     return {"message": "RAG App is running"}
 
-inngest.fast_api.serve(app, inngest_client, [rag_ingest_pdf, rag_query_pdf_ai])
+inngest.fast_api.serve(app, inngest_client, [
+    rag_ingest_pdf, 
+    rag_query_pdf_ai,
+    log_ingest_completed,
+    log_query_completed
+])

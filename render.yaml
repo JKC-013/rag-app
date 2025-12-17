@@ -22,7 +22,7 @@ services:
     name: rag-app-ui
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run streamlit_cloud_app.py --server.port 10000 --server.address 0.0.0.0
+    startCommand: streamlit run streamlit_render.py --server.port 10000 --server.address 0.0.0.0
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
